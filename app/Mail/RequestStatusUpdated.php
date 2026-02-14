@@ -1,0 +1,45 @@
+<?php
+
+namespace App\Mail;
+
+use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Mail\Mailable;
+use Illuminate\Mail\Mailables\Content;
+use Illuminate\Mail\Mailables\Envelope;
+use Illuminate\Queue\SerializesModels;
+
+class RequestStatusUpdated extends Mailable
+{
+    use Queueable, SerializesModels;
+
+    /**
+     * Create a new message instance.
+     */
+    public function __construct(public $itRequest) {}
+
+public function envelope(): Envelope
+{
+    return new Envelope(
+        subject: 'Update on your IT Request: ' . $this->itRequest->title,
+    );
+}
+
+public function content(): Content
+{
+    return new Content(
+        view: 'emails.status-updated',
+    );
+}
+
+
+    /**
+     * Get the attachments for the message.
+     *
+     * @return array<int, \Illuminate\Mail\Mailables\Attachment>
+     */
+    public function attachments(): array
+    {
+        return [];
+    }
+}
