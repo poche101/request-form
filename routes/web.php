@@ -21,7 +21,8 @@ Route::get('/submit-request', [ITRequestController::class, 'create'])
 Route::post('/submit-request', [ITRequestController::class, 'store'])
     ->name('requests.store');
 
-Route::get('/download-template', [ITRequestController::class, 'downloadTemplate'])->name('template.download');
+Route::get('/download-template', [ITRequestController::class, 'downloadTemplate'])
+    ->name('template.download');
 
 
 /*
@@ -30,10 +31,12 @@ Route::get('/download-template', [ITRequestController::class, 'downloadTemplate'
 |--------------------------------------------------------------------------
 */
 
+// Display the Login Page
 Route::get('/login', function () {
     return view('auth.login');
 })->name('login')->middleware('guest');
 
+// Handle Login Submission
 Route::post('/login', function (Request $request) {
 
     $credentials = $request->validate([
@@ -41,17 +44,22 @@ Route::post('/login', function (Request $request) {
         'password' => ['required'],
     ]);
 
+    // Attempt to log the user in
     if (Auth::attempt($credentials, $request->boolean('remember'))) {
         $request->session()->regenerate();
+
+        // Redirect to intended dashboard or default /dashboard
         return redirect()->intended(route('dashboard'));
     }
 
+    // If authentication fails, return with error message
     return back()
-        ->withErrors(['email' => 'Invalid credentials'])
+        ->withErrors(['email' => 'The provided credentials do not match our records.'])
         ->onlyInput('email');
 
 })->name('login.post');
 
+// Handle Logout
 Route::post('/logout', function (Request $request) {
     Auth::logout();
     $request->session()->invalidate();
@@ -73,11 +81,11 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [ITRequestController::class, 'index'])
         ->name('dashboard');
 
-    // ✅ Status Update (WEB FLOW)
+    // Status Update (WEB FLOW)
     Route::put('/requests/{id}/status', [ITRequestController::class, 'updateStatus'])
         ->name('requests.status');
 
-    // Delete Request (optional admin action)
+    // Delete Request
     Route::delete('/requests/{id}', [ITRequestController::class, 'destroy'])
         ->name('requests.destroy');
 });

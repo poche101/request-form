@@ -16,20 +16,21 @@
                 @endif
 
                 <div>
-                    <label class="block text-sm font-semibold text-slate-700 ml-1">Email Address</label>
-                    <input type="email" name="email" required autofocus
+                    <label for="email" class="block text-sm font-semibold text-slate-700 ml-1">Email Address</label>
+                    <input type="email" name="email" id="email" value="{{ old('email') }}" required autofocus
                         class="mt-1 block w-full px-4 py-3 rounded-xl border-slate-200 focus:border-indigo-500 focus:ring-indigo-500 transition-colors">
                 </div>
 
                 <div>
-                    <label class="block text-sm font-semibold text-slate-700 ml-1">Password</label>
-                    <input type="password" name="password" required
+                    <label for="password" class="block text-sm font-semibold text-slate-700 ml-1">Password</label>
+                    <input type="password" name="password" id="password" required
                         class="mt-1 block w-full px-4 py-3 rounded-xl border-slate-200 focus:border-indigo-500 focus:ring-indigo-500 transition-colors">
                 </div>
 
                 <div class="flex items-center">
-                    <input type="checkbox" name="remember" id="remember" class="rounded border-slate-300 text-indigo-600 shadow-sm focus:ring-indigo-500">
-                    <label for="remember" class="ml-2 text-sm text-slate-600">Remember me</label>
+                    <input type="checkbox" name="remember" id="remember"
+                        class="rounded border-slate-300 text-indigo-600 shadow-sm focus:ring-indigo-500">
+                    <label for="remember" class="ml-2 text-sm text-slate-600 cursor-pointer">Remember me</label>
                 </div>
 
                 <button type="submit" class="w-full bg-indigo-600 text-white py-4 rounded-xl font-bold hover:bg-indigo-700 transition-all shadow-lg hover:shadow-indigo-200">
