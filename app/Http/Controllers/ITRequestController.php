@@ -26,6 +26,7 @@ class ITRequestController extends Controller
         13 => 'LLM, LXP, Ministry Prog. Bibles Partnership Dept',
         14 => 'LW USA, LTM / Radio Brands, Inner City Missions',
         15 => 'Follow Up Department',
+        15 => 'Church Growth',
     ];
 
     /**
