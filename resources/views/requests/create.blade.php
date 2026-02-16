@@ -137,7 +137,8 @@
 
                         <div>
                             <label class="block text-xs font-bold uppercase tracking-widest text-slate-400 mb-2 ml-1">
-                                Submit Filled PRD or Screenshot
+                                Submit Filled PRD 
+                                <span class="text-gray-500 font-normal">(Accepted: JPEG, PNG, or PDF)</span>
                             </label>
                             <div class="relative group cursor-pointer">
                                 <input type="file" name="attachment" id="attachment"
