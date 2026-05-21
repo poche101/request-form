@@ -77,15 +77,18 @@ Route::post('/logout', function (Request $request) {
 
 Route::middleware(['auth'])->group(function () {
 
-    // Dashboard
+    // Dashboard Listing
     Route::get('/dashboard', [ITRequestController::class, 'index'])
         ->name('dashboard');
 
     // Status Update (WEB FLOW)
     Route::put('/requests/{id}/status', [ITRequestController::class, 'updateStatus'])
         ->name('requests.status');
-// routes/web.php
-Route::get('/template/download', [TemplateController::class, 'download'])->name('template.download');
+
+    // Secure Ticket Attachment Download
+    Route::get('/tickets/{id}/download', [ITRequestController::class, 'downloadAttachment'])
+        ->name('tickets.download');
+
     // Delete Request
     Route::delete('/requests/{id}', [ITRequestController::class, 'destroy'])
         ->name('requests.destroy');
