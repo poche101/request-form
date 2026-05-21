@@ -237,7 +237,7 @@
             box-shadow: 0 4px 20px rgba(232,101,10,0.28);
         }
         .tkt-submit:hover {
-            background: #cf5608;
+            background: white;
             transform: translateY(-1px);
             box-shadow: 0 8px 28px rgba(232,101,10,0.32);
         }
