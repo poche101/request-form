@@ -262,7 +262,7 @@
             {{-- Header --}}
             <div class="tkt-header">
                 <div class="tkt-icon">
-                    < img scr="/images/lekki-logo.png" alt="logo" />
+                    <img src="/images/lekki-logo.png" alt="logo" />
                 </div>
                 <h1>IT Support Ticket</h1>
                 <p>Fill out the details for rapid assistance.</p>
