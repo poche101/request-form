@@ -21,8 +21,31 @@ Route::get('/submit-request', [ITRequestController::class, 'create'])
 Route::post('/submit-request', [ITRequestController::class, 'store'])
     ->name('requests.store');
 
-Route::get('/download-template', [ITRequestController::class, 'downloadTemplate'])
-    ->name('template.download');
+// Route::get('/download-template', [ITRequestController::class, 'downloadTemplate'])
+//     ->name('template.download');
+
+Route::get('/download-template', function () {
+    // Try these paths one by one:
+
+    $possibleFiles = [
+        public_path('PRD_Template.docx'),
+        public_path('templates/PRD_Template.docx'),
+        public_path('PRD_Template.doc'),
+        public_path('template.docx'),
+    ];
+
+    foreach ($possibleFiles as $file) {
+        if (file_exists($file)) {
+            return response()->download($file, basename($file));
+        }
+    }
+
+    // If no file found, show clear error
+    return response()->json([
+        'error' => 'File not found',
+        'checked_paths' => $possibleFiles
+    ], 404);
+})->name('template.download');
 
 
 /*
