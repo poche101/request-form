@@ -26,8 +26,9 @@ class ITRequestController extends Controller
         13 => 'LLM, LXP, Ministry Prog. Bibles Partnership Dept',
         14 => 'LW USA, LTM / Radio Brands, Inner City Missions',
         15 => 'Follow Up Department',
-        15 => 'Church Growth',
-        15 => 'Outreach Fellowship Coordinating Center',
+        16 => 'Church Growth',
+        17 => 'Outreach Fellowship Coordinating Center',
+        17 => 'OFCC',
     ];
 
     /**
@@ -62,7 +63,6 @@ class ITRequestController extends Controller
             'department'  => 'required|in:' . implode(',', array_keys($this->departments)),
             'title'       => 'required|string|max:100',
             'description' => 'required|string',
-            // CHANGE THIS LINE:
             'attachment'  => 'nullable|file|mimes:jpg,jpeg,png,doc,docx,pdf|max:5120',
         ]);
 
