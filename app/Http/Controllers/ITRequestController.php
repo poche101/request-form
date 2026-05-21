@@ -18,7 +18,7 @@ class ITRequestController extends Controller
         4  => 'Rhapsody of Realities',
         5  => 'Healing School',
         6  => 'Finance',
-        7  => 'TV Production',
+        7  => 'Zonal Media/TV Production',
         8  => 'Ministry Material',
         9  => 'Foundation School & First Timer Ministries',
         10 => 'LoveWorld Music Department',
