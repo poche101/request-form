@@ -283,7 +283,7 @@
                 </template>
 
                 <span class="cc-status-label">Update Ticket Status</span>
-                <form method="POST" :action="`/requests/${req.id}/status`">
+                <form method="POST" :action="'/requests/' + req.id + '/status'">
                     @csrf @method('PUT')
                     <select name="status" x-model="req.status" onchange="this.form.submit()" class="cc-modal-select">
                         <option value="pending">Pending Review</option>
