@@ -25,29 +25,18 @@ Route::post('/submit-request', [ITRequestController::class, 'store'])
 //     ->name('template.download');
 
 Route::get('/download-template', function () {
-    // Try these paths one by one:
+    $filePath = public_path('templates/prd_template.docx');
 
-    $possibleFiles = [
-        public_path('PRD_Template.docx'),
-        public_path('templates/PRD_Template.docx'),
-        public_path('PRD_Template.doc'),
-        public_path('template.docx'),
-    ];
-
-    foreach ($possibleFiles as $file) {
-        if (file_exists($file)) {
-            return response()->download($file, basename($file));
-        }
+    if (!file_exists($filePath)) {
+        return response()->json([
+            'error' => 'File not found',
+            'checked_path' => $filePath
+        ], 404);
     }
 
-    // If no file found, show clear error
-    return response()->json([
-        'error' => 'File not found',
-        'checked_paths' => $possibleFiles
-    ], 404);
+    // Download with nice name for the user
+    return response()->download($filePath, 'PRD_Template.docx');
 })->name('template.download');
-
-
 /*
 |--------------------------------------------------------------------------
 | Authentication Routes (Manual)
