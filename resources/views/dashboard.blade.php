@@ -213,7 +213,7 @@
                                 <span>Document Attachment</span>
                             </div>
                         @endif
-                        <a href="{{ Storage::url($item->attachment) }}" download class="cc-att-dl">
+                        <a href="{{ route('tickets.download', $item->id) }}" class="cc-att-dl">
                             <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a2 2 0 002 2h12a2 2 0 002-2v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
                             </svg>
@@ -278,7 +278,7 @@
                                 <p class="cc-modal-att-sub">Download to view details</p>
                             </div>
                         </div>
-                        <a :href="'/storage/' + req.attachment" download class="cc-modal-dl">Download File</a>
+                        <a :href="'/tickets/' + req.id + '/download'" class="cc-modal-dl">Download File</a>
                     </div>
                 </template>
 
