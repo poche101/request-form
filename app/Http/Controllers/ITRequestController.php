@@ -7,6 +7,7 @@ use App\Mail\RequestConfirmation;
 use App\Mail\RequestStatusUpdated;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Storage;
 
 class ITRequestController extends Controller
 {
@@ -28,7 +29,7 @@ class ITRequestController extends Controller
         15 => 'Follow Up Department',
         16 => 'Church Growth',
         17 => 'Outreach Fellowship Coordinating Center',
-        17 => 'OFCC',
+        18 => 'OFCC',
     ];
 
     /**
@@ -169,5 +170,31 @@ class ITRequestController extends Controller
 
         // Return the file download response
         return response()->download($filePath, 'IT_Project_PRD_Template.docx');
+    }
+
+    /**
+     * Securely Download Ticket Attachments directly out of storage
+     * This bypasses folder permission issues and Nginx direct file blocks.
+     */
+    public function downloadAttachment($id)
+    {
+        $itRequest = ITRequest::findOrFail($id);
+
+        // Verify that the record actually has an attachment string assigned
+        if (!$itRequest->attachment) {
+            return redirect()->back()->with('error', 'This ticket does not contain any attachments.');
+        }
+
+        // Check if the file physically exists on the public disk configuration
+        if (!Storage::disk('public')->exists($itRequest->attachment)) {
+            return redirect()->back()->with('error', 'The attachment file could not be found on the server.');
+        }
+
+        // Dynamically parse out an elegant client download name matching its original type extension
+        $extension = pathinfo($itRequest->attachment, PATHINFO_EXTENSION);
+        $downloadName = 'Attachment_Ticket_#' . $itRequest->id . '.' . $extension;
+
+        // Force browser binary stream download safely via Laravel
+        return Storage::disk('public')->download($itRequest->attachment, $downloadName);
     }
 }
