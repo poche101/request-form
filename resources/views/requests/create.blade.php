@@ -262,10 +262,7 @@
             {{-- Header --}}
             <div class="tkt-header">
                 <div class="tkt-icon">
-                    <svg width="20" height="20" fill="none" stroke="#fff" stroke-width="2.2"
-                        stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-                        <path d="M13 10V3L4 14h7v7l9-11h-7z"/>
-                    </svg>
+                    < img scr="/images/lekki-logo.png" alt="logo" />
                 </div>
                 <h1>IT Support Ticket</h1>
                 <p>Fill out the details for rapid assistance.</p>
