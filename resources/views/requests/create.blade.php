@@ -282,7 +282,7 @@
                         <p>Download the Word doc for project specs</p>
                     </div>
                 </div>
-                <a href="{{ route('template.download') }}" class="tkt-dl-btn">
+                <a href="/download-template" class="tkt-dl-btn">
                     <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2"
                         stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
                         <path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1M7 10l5 5m0 0l5-5m-5 5V3"/>
