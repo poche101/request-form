@@ -84,7 +84,8 @@ Route::middleware(['auth'])->group(function () {
     // Status Update (WEB FLOW)
     Route::put('/requests/{id}/status', [ITRequestController::class, 'updateStatus'])
         ->name('requests.status');
-
+// routes/web.php
+Route::get('/template/download', [TemplateController::class, 'download'])->name('template.download');
     // Delete Request
     Route::delete('/requests/{id}', [ITRequestController::class, 'destroy'])
         ->name('requests.destroy');
